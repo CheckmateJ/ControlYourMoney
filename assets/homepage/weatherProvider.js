@@ -6,23 +6,20 @@ export const WeatherContext = createContext();
 class WeatherProvider extends Component {
     constructor(props) {
         super(props);
-        this.state = {city: 'Mysłowice', main: {}, weather: '', wind: {}}
-        this.getWeather();
+        this.state = {city: '', main: {}, weather: '', wind: {}}
     }
-    getWeather(city='Mysłowice') {
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=en&appid=4618bc0350ff8036acafc7f2463a71dd&units=metric`).then(response => {
-            console.log(response)
+
+    getWeather(event, city) {
+        event.preventDefault()
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city.city}&lang=en&appid=4618bc0350ff8036acafc7f2463a71dd&units=metric`).then(response => {
             this.setState({
-                city: city,
+                city: city.city,
                 main: response.data.main,
                 weather: response.data.weather[0].description,
                 wind: response.data.wind
             })
-            console.log(this.state.weather)
-            console.log(this.state.wind)
-            console.log(this.state.main)
-            }
-        )
+
+        })
 
     }
 
