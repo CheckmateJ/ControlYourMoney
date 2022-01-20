@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import Weather from './weatherBar';
-import WeatherProvider from "./weatherProvider";
-import SearchInput from "./searchInput";
+import WeatherProvider, {WeatherContext} from "./weatherProvider";
 
 class HomepageComponent extends Component {
     render() {
         return (
-            <div>
-                <WeatherProvider >
-                    <SearchInput/>
-                    <Weather/>
-                </WeatherProvider>
+            <div >
+                <div>
+                    <WeatherProvider>
+                        <Weather/>
+                    </WeatherProvider>
+                </div>
             </div>
         );
     }
